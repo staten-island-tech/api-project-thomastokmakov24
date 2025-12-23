@@ -1,6 +1,6 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
+// import './style.css'
+// import javascriptLogo from './javascript.svg'
+// import viteLogo from '/vite.svg'
 // import { setupCounter } from './counter.js'
 
 // document.querySelector('#app').innerHTML = `
@@ -21,20 +21,20 @@ import viteLogo from '/vite.svg'
 //   </div>
 // `
 
-// setupCounter(document.querySelector('#counter'))
-async function Lasthope() {
-//  console.log("https://docs.magicthegathering.io//v1/cards")
-  try {
-    const response = await fetch("https://docs.magicthegathering.io//v1/cards//* ${name } */");
-  if (response.status != 200) {
-    throw new Error(response);
-  }else{
-    const data = await response.json();
-    console.log(data);
+// // setupCounter(document.querySelector('#counter'))
+// async function Lasthope() {
+// //  console.log("https://docs.magicthegathering.io//v1/cards")
+//   try {
+//     const response = await fetch("https://api.magicthegathering.io/v1/cards");
+//   if (response.status != 200) {
+//     throw new Error(response);
+//   }else{
+//     const data = await response.json();
+//     console.log(data);
     
-  }
-  } catch (error) {
-    console.log(error)
-  }
-}
-Lasthope();
+//   }
+//   } catch (error) {
+//     console.log(error)
+//   }
+// }
+// Lasthope();
