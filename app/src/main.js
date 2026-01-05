@@ -38,3 +38,16 @@
 //   }
 // }
 // Lasthope();
+array = ("https://api.magicthegathering.io/v1/cards");
+function inject(cry) {
+  const container = document.querySelector(".container");
+  container.insertAdjacentHTML(
+    "afterbegin",
+    `<div class="card" data-genre="${cry.genre}"  data-cardPrice="${cry.cardPrice}"data-cardHeader="${cry.cardHeader}">
+        <img class="cardImg" src=${cry.cardImg} alt="mimimimimi"/>
+        <button class = "btn">SGN</button>
+        <h2 >${cry.cardHeader}</h2> 
+        <h2 class = "cardPrice" >${cry.cardPrice}</h2>
+        </div>`,
+  );
+} inject(array);
