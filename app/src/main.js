@@ -38,7 +38,8 @@
 //   }
 // }
 // Lasthope();
-array = ("https://api.magicthegathering.io/v1/cards");
+const array = ("https://api.magicthegathering.io/v1/cards");
+const api = await fetch 
 function inject(cry) {
   const container = document.querySelector(".container");
   container.insertAdjacentHTML(
