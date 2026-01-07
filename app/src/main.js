@@ -38,8 +38,22 @@
 //   }
 // }
 // Lasthope();
-const array = ("https://api.magicthegathering.io/v1/cards");
-const api = await fetch 
+const array = await fetch("https://api.magicthegathering.io/v1/cards");
+const api = await array.json();
+console.log(api);
+
+function catagories() {
+  api.cards.forEach((object) => {
+    inject(object);
+  }
+  if (object.genre === input) {
+    inject(object);
+  } else {
+    filter(object);
+  
+  
+  
+}
 function inject(cry) {
   const container = document.querySelector(".container");
   container.insertAdjacentHTML(
@@ -51,4 +65,4 @@ function inject(cry) {
         <h2 class = "cardPrice" >${cry.cardPrice}</h2>
         </div>`,
   );
-} inject(array);
+} inject(api);
