@@ -1,4 +1,7 @@
-// import './style.css'
+//i added on the assignment a doc with the classes of the api
+
+
+import './style.css'
 // import javascriptLogo from './javascript.svg'
 // import viteLogo from '/vite.svg'
 // import { setupCounter } from './counter.js'
@@ -40,29 +43,30 @@
 // Lasthope();
 const array = await fetch("https://api.magicthegathering.io/v1/cards");
 const api = await array.json();
-console.log(api);
+const api2 = api.cards;
+console.log(api2);
 
 function catagories() {
-  api.cards.forEach((object) => {
-    inject(object);
-  }
-  if (object.genre === input) {
-    inject(object);
+  api.object.cards.forEach((item) => {// should it be api.cards or api.object.cards?
+    inject(item);
+  });
+  if (item.name === input) {
+    inject(item);
   } else {
-    filter(object);
+    filter(item);
   
   
-  
-}
+  };}
+/* data-rarity="${cry.genre}"  data-cardPrice="${cry.cardPrice}"data-cardHeader="${cry.cardHeader}" */
 function inject(cry) {
   const container = document.querySelector(".container");
   container.insertAdjacentHTML(
     "afterbegin",
-    `<div class="card" data-genre="${cry.genre}"  data-cardPrice="${cry.cardPrice}"data-cardHeader="${cry.cardHeader}">
-        <img class="cardImg" src=${cry.cardImg} alt="mimimimimi"/>
+    `<div id ="card" >
+        <img id="cardImg" src=${cry.ImageURL} alt="mimimimimi"/>
         <button class = "btn">SGN</button>
-        <h2 >${cry.cardHeader}</h2> 
-        <h2 class = "cardPrice" >${cry.cardPrice}</h2>
+        <h2 >${cry.name}</h2> 
+        <h2 class = "cardPrice" >${cry.manaCost}</h2>
         </div>`,
   );
-} inject(api);
+} inject(api2);
