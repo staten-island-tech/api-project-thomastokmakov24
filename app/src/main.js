@@ -46,27 +46,28 @@ const api = await array.json();
 const api2 = api.cards;
 console.log(api2);
 
-function catagories() {
-  api.object.cards.forEach((item) => {// should it be api.cards or api.object.cards?
+function filter(/*item , input */) {
+  api./* object. */cards.forEach((item) => {// should it be api.cards or api.object.cards?
     inject(item);
   });
-  if (item.name === input) {
+/*   if (item.name === input) {
     inject(item);
   } else {
     filter(item);
   
   
-  };}
+  }; */}// we no not need to filter. Just iinject all as buttons, if item is pressed, url/name or whatever 's data is shown
+
 /* data-rarity="${cry.genre}"  data-cardPrice="${cry.cardPrice}"data-cardHeader="${cry.cardHeader}" */
 function inject(cry) {
   const container = document.querySelector(".container");
   container.insertAdjacentHTML(
     "afterbegin",
-    `<div id ="card" >
-        <img id="cardImg" src=${cry.ImageURL} alt="mimimimimi"/>
+    `<div class ="card" >
+        <img class="cardImg" src=${cry.imageUrl} alt="mimimimimi"/>
         <button class = "btn">SGN</button>
         <h2 >${cry.name}</h2> 
         <h2 class = "cardPrice" >${cry.manaCost}</h2>
         </div>`,
-  );
-} inject(api2);
+  );console.log(cry.ImageUrl);
+} inject(api2); filter();
