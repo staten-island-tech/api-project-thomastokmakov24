@@ -69,5 +69,5 @@ function inject(cry) {
         <h2 >${cry.name}</h2> 
         <h2 class = "cardPrice" >${cry.manaCost}</h2>
         </div>`,
-  );console.log(cry.ImageUrl);
+  );console.log(cry.imageUrl);
 } inject(api2); filter();
