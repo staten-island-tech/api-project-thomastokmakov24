@@ -1,7 +1,5 @@
 //i added on the assignment a doc with the classes of the api
 
-
-import './style.css'
 // import javascriptLogo from './javascript.svg'
 // import viteLogo from '/vite.svg'
 // import { setupCounter } from './counter.js'
@@ -34,29 +32,37 @@ import './style.css'
 //   }else{
 //     const data = await response.json();
 //     console.log(data);
-    
+
 //   }
 //   } catch (error) {
 //     console.log(error)
 //   }
 // }
 // Lasthope();
+import "./style.css";
 const array = await fetch("https://api.magicthegathering.io/v1/cards");
 const api = await array.json();
 const api2 = api.cards;
 console.log(api2);
 
 function filter(/*item , input */) {
-  api./* object. */cards.forEach((item) => {// should it be api.cards or api.object.cards?
+  api./* object. */ cards.forEach((item) => {
+    // should it be api.cards or api.object.cards?
     inject(item);
   });
-/*   if (item.name === input) {
+/*   const mtg = require("mtgsdk");
+
+  mtg.card.find(386616).then((result) => {
+    console.log(result.card.name);
+  }); *///                ts dont work bc outdated but andy say i can use same url 2ice
+  /*   if (item.name === input) {
     inject(item);
   } else {
     filter(item);
   
   
-  }; */}// we no not need to filter. Just iinject all as buttons, if item is pressed, url/name or whatever 's data is shown
+  }; */
+} // we no not need to filter. Just iinject all as buttons, if item is pressed, url/name or whatever 's data is shown
 
 /* data-rarity="${cry.genre}"  data-cardPrice="${cry.cardPrice}"data-cardHeader="${cry.cardHeader}" */
 function inject(cry) {
@@ -68,6 +74,25 @@ function inject(cry) {
         <button class = "btn">SGN</button>
         <h2 >${cry.name}</h2> 
         <h2 class = "cardPrice" >${cry.manaCost}</h2>
-        </div>`,
-  );console.log(cry.imageUrl);
-} inject(api2); filter();
+        </div>`
+  );
+  //console.log(cry.imageUrl);
+}
+function injectExtra(cry) {
+  const container = document.querySelector(".container");
+  container.insertAdjacentHTML(
+    "afterbegin",
+    `<div class ="card" >
+        <img class="cardImg" src=${cry.imageUrl} alt="mimimimimi"/>
+        <button class = "btn">SGN</button>
+        <h2 >${cry.name}</h2> 
+        <h2 class = "cardPrice" >${cry.manaCost}</h2>
+        </div>`
+  );
+  //console.log(cry.imageUrl);
+}
+
+
+//inject(api2);
+filter();
+console.log("https://api.magicthegathering.io/v1/cards/:id");
