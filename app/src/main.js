@@ -43,56 +43,48 @@ import "./style.css";
 const array = await fetch("https://api.magicthegathering.io/v1/cards");
 const api = await array.json();
 const api2 = api.cards;
-console.log(api2);
+const setsRow = document.getElementById("setsRow");
+const cardsContainer = document.getElementById("cardsContainer");
+const setsResponse = await fetch("https://api.magicthegathering.io/v1/sets");
+const setsData = await setsResponse.json();
+const sets = setsData.sets;
+
+
+sets.forEach(setItem => {
+  const btn = document.createElement("button");
+  btn.textContent = setItem.name;
+  btn.addEventListener("click", () => handleSetClick(setItem.name));
+  setsRow.appendChild(btn);
+});
+
+async function handleSetClick(setName) {// this one deals with the wipoing of prev crds then injctingnew ones ._.
+  const filtered = api2.filter(card => card.setName === setName);
+  filtered.forEach(card => {inject(card);});
+  console.log("Cards in set:", setName, filtered);// testing purposes but could del
+}
 
 function filter(/*item , input */) {
-  api./* object. */ cards.forEach((item) => {
-    // should it be api.cards or api.object.cards?
+  api.cards.forEach((item) => {   
     inject(item);
   });
-/*   const mtg = require("mtgsdk");
-
-  mtg.card.find(386616).then((result) => {
-    console.log(result.card.name);
-  }); *///                ts dont work bc outdated but andy say i can use same url 2ice
-  /*   if (item.name === input) {
-    inject(item);
-  } else {
-    filter(item);
-  
-  
-  }; */
 } // we no not need to filter. Just iinject all as buttons, if item is pressed, url/name or whatever 's data is shown
 
 /* data-rarity="${cry.genre}"  data-cardPrice="${cry.cardPrice}"data-cardHeader="${cry.cardHeader}" */
 function inject(cry) {
-  const container = document.querySelector(".container");
+  const container = document.querySelector("#cardsContainer");
   container.insertAdjacentHTML(
-    "afterbegin",
-    `<div class ="card" >
-        <img class="cardImg" src=${cry.imageUrl} alt="mimimimimi"/>
-        <button class = "btn">SGN</button>
-        <h2 >${cry.name}</h2> 
-        <h2 class = "cardPrice" >${cry.manaCost}</h2>
+    "beforeend",
+    `<div class ="cardDiv border rounded-lg p-4 bg-white shadow flex flex-col items-center">
+      <img class="cardImg w-full h-auto mb-3" src=${cry.imageUrl ?? ""} alt="The Image URL has errors"/>
+        <button class = "btn bg-blue-500 text-white px-3 py-1 rounded mb-2 hover:bg-blue-600 transition">SGN</button>
+        <h2 class="text-lg font-bold mb-1" >${cry.name}</h2> 
+        <h2 class = "cardPrice text-gray-700" >${cry.manaCost ?? "NoIdeaGangie"}</h2>/* tryna slide in my troubleshooting rubric points like an APEX player.  */
         </div>`
   );
-  //console.log(cry.imageUrl);
 }
-function injectExtra(cry) {
-  const container = document.querySelector(".container");
-  container.insertAdjacentHTML(
-    "afterbegin",
-    `<div class ="card" >
-        <img class="cardImg" src=${cry.imageUrl} alt="mimimimimi"/>
-        <button class = "btn">SGN</button>
-        <h2 >${cry.name}</h2> 
-        <h2 class = "cardPrice" >${cry.manaCost}</h2>
-        </div>`
-  );
-  //console.log(cry.imageUrl);
-}
+
 
 
 //inject(api2);
-filter();
-console.log("https://api.magicthegathering.io/v1/cards/:id");
+//filter();
+
